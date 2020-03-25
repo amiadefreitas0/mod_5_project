@@ -16,7 +16,8 @@ class ReviewsController < ApplicationController
         
         game = Game.find(params[:id])
         reviews = game.reviews
-        render json: reviews
+        review_user= reviews.to_json(:include => :user)
+        render json: review_user
     end
 
     def create

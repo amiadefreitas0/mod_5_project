@@ -1,13 +1,12 @@
 class GamesController < ApplicationController
     def index
-        
         games = Game.all
-        rating = Game.game_rating
         render json: games
     end
 
     def show 
-        game = Game.find(params[:id])
+        found_game = Game.find(params[:id])
+        game = found_game.to_json(:methods => :game_rating, :include=> :categories)
         render json: game
     end
  

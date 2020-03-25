@@ -10,24 +10,11 @@ class Game < ApplicationRecord
     #  for each game get the ratings
     # create a new array of ratings 
     #  use .reduce 
-    def self.game_rating
-        games = Game.all
-        ratingsArray = games.map do |game|
-            game.ratings 
-        end 
-         ratingsArray.each do |ratingArray|
-            rates = ratingArray.map do |rating|
-                rating.rate
-            end
-            if(rates.length > 0)
-                sum = rates.sum
-                average = sum / rates.length
-            else
-                nil  
-            end
-            
+    def game_rating
+        ratingArray = self.ratings
+        results = ratingArray.inject(0){|sum,el| sum + el.rate}.to_f / ratingArray.length
+       return results
+    end
 
-         end
-        
-    end 
+    
 end
