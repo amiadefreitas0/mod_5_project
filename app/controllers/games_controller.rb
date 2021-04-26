@@ -9,6 +9,8 @@ class GamesController < ApplicationController
         game = found_game.to_json(:methods => :game_rating, :include=> :categories)
         render json: game
     end
+
+
  
 
 end
